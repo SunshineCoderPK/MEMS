@@ -13,4 +13,6 @@ public interface IExpenseService {
 	public void add(Expense expense);
 
 	public void update(Expense expense);
+
+	public void doDelete(String expenseNum);
 }

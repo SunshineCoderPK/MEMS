@@ -111,7 +111,7 @@ public class UploadimageAction extends ActionSupport{
 	        }
 	        inputStream.close();
 	        outputStream.flush();
-	        String imgsrc="\\img"+"\\"+fileName;
+	        String imgsrc="\\img"+"\\"+foldername+"\\"+fileName;
             if(foldername.equals("user")){
             	Userinfo userinfo=(Userinfo)session.getAttribute("loginUser");
             	userinfo.setImgsrc(imgsrc);

@@ -53,4 +53,10 @@ public class ExpenseServiceImpl implements IExpenseService {
 	public void update(Expense expense) {
 		expenseDao.update(expense);
 	}
+	
+
+    @Override
+    public void doDelete(String expenseNum) {
+        expenseDao.executeUpdate("dodeleteexpense", expenseNum);
+    }
 }

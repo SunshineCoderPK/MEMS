@@ -14,6 +14,8 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.EscapedErrors;
 
 import com.kaipan.mems.domain.Expense;
@@ -311,6 +313,7 @@ public class ExpenseAction extends BaseAction<Expense>{
 	 * 根据id删除expense
 	 * @throws IOException 
 	 */
+	
 	public String delExpense() throws IOException{
 		String flag = "1";
 		try{
@@ -330,11 +333,13 @@ public class ExpenseAction extends BaseAction<Expense>{
 	 */
 	public String addExpense() throws IOException{
 		String flag = "1";
-		Expense expense=new Expense();
-		int random = (int) (Math.random() * 10000); // 随机数
+        int random = (int) (Math.random() * 10000); // 随机数
 		
 		//生成报销单编号
 		String expenseNum=System.currentTimeMillis() +""+ random;
+		try{
+		Expense expense=new Expense();
+		
 		expense.setExpenseNum(expenseNum); // 通过得到系统时间加随机数生成新文件名，避免重复
 		
 		//导入报销人信息
@@ -475,7 +480,12 @@ public class ExpenseAction extends BaseAction<Expense>{
 		expense.setExpensePay(expensePay);
 		expense.setPersonsalPay(total-expensePay);
 		expenseService.update(expense);
- 
+		}catch (Exception e) {
+			flag="0";
+			expensemedicineService.doDelete(expenseNum);
+			expensemedicalitemService.doDelete(expenseNum);
+			expenseService.doDelete(expenseNum);
+		}
 		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
 		ServletActionContext.getResponse().getWriter().print(flag);
 		return NONE;

@@ -6,4 +6,6 @@ public interface IExpensemedicineService {
 
 	public void add(Expensemedicine expensemedicine);
 
+	public void doDelete(String expenseNum);
+
 }
