@@ -108,7 +108,7 @@
 						placeholder="请输入账号..." />
 				</div>
 				<div style="margin: 5px 0px;">
-					<input id="loginform:password" name="password" type="text"
+					<input id="loginform:password" name="password" type="password" style="width: 271px;height: 31px;margin-top: 20px"
 						placeholder="请输入密码..." />
 				</div>
 				<div style="margin: 5px 0px;">

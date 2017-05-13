@@ -178,7 +178,6 @@
 		</div>
 		<div id="layout_north_kzmbMenu" style="width: 100px; display: none;">
 			<div onclick="editPassword();">修改密码</div>
-			<div onclick="showAbout();">联系管理员</div>
 			<div class="menu-sep"></div>
 			<div onclick="logoutFun();">退出系统</div>
 		</div>
